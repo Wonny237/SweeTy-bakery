@@ -1,0 +1,474 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Golden Crust Bakery — Baked with Warmth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Nunito+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+ 
+</head>
+<body>
+
+<!-- ============ AD / EVENT POPUP ============ -->
+<div class="ad-backdrop" id="adBackdrop" role="dialog" aria-modal="true" aria-labelledby="adTitle">
+  <div class="ad-card">
+    <button class="ad-close" id="adClose" aria-label="Close announcement">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <span class="eyebrow">Happening this week</span>
+    <h3 id="adTitle">🎉 National Bakery Day — 20% Off!</h3>
+    <p>Every party package ordered between now and Sunday gets 20% off, plus a free box of honey cookies. Golden crust, golden prices.</p>
+    <a href="#packages" class="btn btn-primary" id="adCta">See Party Packages</a>
+    <div class="ad-timer"><div class="ad-timer-fill" id="adTimerFill"></div></div>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <nav class="nav">
+    <a href="#top" class="brand">
+      <svg class="brand-mark" viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="30" fill="#6E4028"/>
+        <circle cx="32" cy="32" r="24" fill="#F6CD6E"/>
+        <path d="M20 34c0-8 5-16 12-16s12 8 12 16-6 12-12 12-12-4-12-12z" fill="#C6821F"/>
+        <path d="M22 30c2-6 6-10 10-10s8 4 10 10" stroke="#3A2313" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+        <circle cx="26" cy="26" r="1.6" fill="#3A2313"/>
+        <circle cx="38" cy="26" r="1.6" fill="#3A2313"/>
+        <circle cx="32" cy="22" r="1.6" fill="#3A2313"/>
+      </svg>
+      <span>
+        <span class="brand-name" style="display:block;">Golden Crust</span>
+        <span class="brand-tag">Bakery &amp; Patisserie</span>
+      </span>
+    </a>
+    <ul class="navlinks" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#packages">Party Packages</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#packages" class="nav-cta">Pre-order</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero wrap">
+    <div>
+      <span class="eyebrow">Baked daily since 2014</span>
+      <h1>Warm bread,<br><em>golden</em> moments.</h1>
+      <p>Golden Crust is a small-batch bakery where sourdough, butter pastries and celebration cakes are made from scratch every morning — no shortcuts, just good flour, good butter and time.</p>
+      <div class="btn-row">
+        <a href="#menu" class="btn btn-primary">Browse the Menu</a>
+        <a href="#packages" class="btn btn-outline">Party Packages</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="hero-plate">
+        <svg viewBox="0 0 200 200" fill="none">
+          <ellipse cx="100" cy="150" rx="70" ry="10" fill="rgba(58,35,19,0.15)"/>
+          <path d="M40 120c0-35 27-65 60-65s60 30 60 65-27 30-60 30-60 5-60-30z" fill="#8C5A2E"/>
+          <path d="M50 110c8-22 22-40 50-40s42 18 50 40" stroke="#3A2313" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M62 96c6-14 18-26 38-26s32 12 38 26" stroke="#3A2313" stroke-width="2.4" fill="none" stroke-linecap="round" opacity="0.6"/>
+          <circle cx="70" cy="108" r="2.6" fill="#3A2313"/>
+          <circle cx="130" cy="108" r="2.6" fill="#3A2313"/>
+          <circle cx="100" cy="118" r="2.6" fill="#3A2313"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <svg class="divider wrap" viewBox="0 0 1140 46" preserveAspectRatio="none">
+    <path d="M0 23 Q 30 3, 60 23 T 120 23 T 180 23 T 240 23 T 300 23 T 360 23 T 420 23 T 480 23 T 540 23 T 600 23 T 660 23 T 720 23 T 780 23 T 840 23 T 900 23 T 960 23 T 1020 23 T 1080 23 T 1140 23"/>
+  </svg>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about">
+    <div class="wrap about reveal">
+      <div class="about-art">
+        <svg viewBox="0 0 300 260" fill="none">
+          <rect x="20" y="40" width="260" height="180" rx="14" fill="#F2E4C2"/>
+          <rect x="36" y="60" width="90" height="70" rx="8" fill="#E7A83B"/>
+          <rect x="136" y="60" width="128" height="30" rx="8" fill="#6E4028"/>
+          <rect x="136" y="100" width="128" height="30" rx="8" fill="#A9764F"/>
+          <rect x="36" y="150" width="228" height="50" rx="8" fill="#C6821F"/>
+          <circle cx="60" cy="95" r="12" fill="#FBF3E1"/>
+          <circle cx="95" cy="95" r="12" fill="#FBF3E1"/>
+          <path d="M50 175h20M85 175h20M120 175h20M155 175h20M190 175h20M225 175h20" stroke="#FBF3E1" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="about-copy">
+        <span class="eyebrow">Our Story</span>
+        <h2>From one home oven to your celebration table.</h2>
+        <p>Golden Crust started in a home kitchen with a single wood-fired oven and a habit of sharing sourdough with the neighbours. Ten years on, we still mix every dough by hand, laminate every croissant fresh at dawn, and taste every batch before it leaves the kitchen.</p>
+        <p>Everything here is built the same way: real butter, real fruit, real time to prove and rest — and a menu small enough that we can vouch for every single item on it.</p>
+        <ul class="about-facts">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21V9l8-6 8 6v12"/><path d="M9 21v-8h6v8"/></svg> Family-run kitchen, open since 2014</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> Fresh bakes twice daily, morning &amp; late afternoon</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 3 5 6.5 5c2 0 3.5 1.2 4.5 2.7C12 6.2 13.5 5 15.5 5 19 5 21.5 8.5 19.5 12.5 17 16.65 12 21 12 21z"/></svg> Made-to-order party &amp; celebration cakes</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <svg class="divider flip wrap" viewBox="0 0 1140 46" preserveAspectRatio="none">
+    <path d="M0 23 Q 30 3, 60 23 T 120 23 T 180 23 T 240 23 T 300 23 T 360 23 T 420 23 T 480 23 T 540 23 T 600 23 T 660 23 T 720 23 T 780 23 T 840 23 T 900 23 T 960 23 T 1020 23 T 1080 23 T 1140 23"/>
+  </svg>
+
+  <!-- ============ MENU ============ -->
+  <section id="menu" class="alt-bg">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Tap to peek inside</span>
+        <h2>Our everyday menu</h2>
+        <p>Click any item for the full ingredient list, allergens and price. Baked fresh, sold while it lasts.</p>
+      </div>
+
+      <div class="filter-row reveal">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="Breads">Breads</button>
+        <button class="chip" data-filter="Pastries">Pastries</button>
+        <button class="chip" data-filter="Cakes">Cakes</button>
+        <button class="chip" data-filter="Cookies">Cookies</button>
+      </div>
+
+      <div class="menu-grid reveal" id="menuGrid"></div>
+    </div>
+  </section>
+
+  <svg class="divider wrap" viewBox="0 0 1140 46" preserveAspectRatio="none">
+    <path d="M0 23 Q 30 3, 60 23 T 120 23 T 180 23 T 240 23 T 300 23 T 360 23 T 420 23 T 480 23 T 540 23 T 600 23 T 660 23 T 720 23 T 780 23 T 840 23 T 900 23 T 960 23 T 1020 23 T 1080 23 T 1140 23"/>
+  </svg>
+
+  <!-- ============ PARTY PACKAGES ============ -->
+  <section id="packages">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Pre-order</span>
+        <h2>Party &amp; celebration packages</h2>
+        <p>Feeding a crowd? Pick a package below and message us your date — we'll confirm flavours and headcount over chat.</p>
+      </div>
+      <div class="pkg-grid reveal" id="pkgGrid"></div>
+    </div>
+  </section>
+
+  <svg class="divider flip wrap" viewBox="0 0 1140 46" preserveAspectRatio="none">
+    <path d="M0 23 Q 30 3, 60 23 T 120 23 T 180 23 T 240 23 T 300 23 T 360 23 T 420 23 T 480 23 T 540 23 T 600 23 T 660 23 T 720 23 T 780 23 T 840 23 T 900 23 T 960 23 T 1020 23 T 1080 23 T 1140 23"/>
+  </svg>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" class="alt-bg">
+    <div class="wrap contact-grid reveal">
+      <div class="contact-info">
+        <span class="eyebrow">Get in touch</span>
+        <h2>Visit, call, or order online</h2>
+        <p>Drop by the shop, send us a message, or follow along for daily bake lists and behind-the-scenes.</p>
+        <ul class="contact-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Jl. Braga No. 24, Bandung<span class="sub">Open Tue–Sun, 7am – 6pm</span></span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.68 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.32 1.85.55 2.81.68A2 2 0 0122 16.92z"/></svg>
+            <a href="tel:+6281234567890">+62 812‑3456‑7890<span class="sub">Call or WhatsApp</span></a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>
+            <a href="mailto:hello@goldencrust.bakery">hello@goldencrust.bakery</a>
+          </li>
+        </ul>
+        <div class="social-row">
+          <a class="social-btn" href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+          <a class="social-btn" href="https://wa.me/6281234567890" aria-label="WhatsApp" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+          </a>
+          <a class="social-btn" href="https://facebook.com" aria-label="Facebook" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="map-card">
+        <h3 style="font-size:1.1rem; margin-bottom:14px;">Shop hours</h3>
+        <table class="hours-table">
+          <tr><td>Monday</td><td>Closed</td></tr>
+          <tr><td>Tuesday – Friday</td><td>7:00 – 18:00</td></tr>
+          <tr><td>Saturday</td><td>7:00 – 19:00</td></tr>
+          <tr><td>Sunday</td><td>8:00 – 15:00</td></tr>
+        </table>
+        <p style="margin-top:16px; font-size:0.86rem; color:var(--brown-light);">Party package pickups can be arranged outside shop hours by request.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap foot-row">
+    <div>
+      <span class="brand-name" style="font-size:1.1rem;">Golden Crust Bakery</span>
+      <span class="brand-tag" style="display:block; margin-top:2px;">Baked with warmth, since 2014</span>
+    </div>
+    <small>© 2026 Golden Crust Bakery. All rights reserved.</small>
+  </div>
+</footer>
+
+<!-- ============ MENU ITEM MODAL ============ -->
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="modal-thumb" id="modalThumb"></div>
+    <button class="modal-close" id="modalClose" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="modal-body">
+      <span class="modal-cat" id="modalCat"></span>
+      <h3 class="modal-title" id="modalTitle"></h3>
+      <div class="modal-price" id="modalPrice"></div>
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-sub">Ingredients</div>
+      <ul class="ing-list" id="modalIng"></ul>
+      <div class="allergen-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L14.7 3.86a2 2 0 00-3.4 0z"/></svg>
+        <span id="modalAllergen"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============================================================
+     ICON LIBRARY — simple flat SVGs reused across cards & modal
+     ============================================================ */
+  const icons = {
+    bread: `<svg viewBox="0 0 100 100" fill="none"><path d="M15 55c0-20 15-38 35-38s35 18 35 38-15 22-35 22-35-2-35-22z" fill="#3A2313" opacity="0.9"/><path d="M20 50c3-14 12-24 30-24s27 10 30 24" stroke="#FBF3E1" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M28 42c3-8 9-14 22-14" stroke="#FBF3E1" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6"/></svg>`,
+    croissant: `<svg viewBox="0 0 100 100" fill="none"><path d="M20 65c-4-20 8-42 30-46 18-3 34 8 38 22-6-6-16-9-25-6 10 3 17 11 18 22-8-8-20-11-30-8 8 4 13 12 12 21-10-10-24-14-38-9-2 1-4 2-5 4z" fill="#3A2313"/></svg>`,
+    cinnamon: `<svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="34" fill="#3A2313"/><path d="M50 24a26 26 0 1126 26" stroke="#FBF3E1" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M50 34a16 16 0 1116 16" stroke="#FBF3E1" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="4" fill="#FBF3E1"/></svg>`,
+    cake: `<svg viewBox="0 0 100 100" fill="none"><path d="M20 85V55l30-30 30 30v30z" fill="#3A2313"/><rect x="20" y="70" width="60" height="15" fill="#2C1A0D"/><rect x="20" y="55" width="60" height="6" fill="#FBF3E1" opacity="0.5"/><rect x="47" y="18" width="6" height="14" fill="#3A2313"/><path d="M50 10c-4 4-4 8 0 12 4-4 4-8 0-12z" fill="#E7A83B"/></svg>`,
+    cupcake: `<svg viewBox="0 0 100 100" fill="none"><path d="M28 55h44l-6 32a6 6 0 01-6 5H40a6 6 0 01-6-5z" fill="#3A2313"/><path d="M50 20c-14 0-26 12-26 24 0 8 6 12 26 12s26-4 26-12c0-12-12-24-26-24z" fill="#E7A83B"/><circle cx="50" cy="18" r="4" fill="#3A2313"/></svg>`,
+    cookie: `<svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="34" fill="#3A2313"/><circle cx="38" cy="42" r="4" fill="#FBF3E1"/><circle cx="60" cy="38" r="4" fill="#FBF3E1"/><circle cx="55" cy="58" r="4" fill="#FBF3E1"/><circle cx="34" cy="60" r="4" fill="#FBF3E1"/><circle cx="66" cy="58" r="4" fill="#FBF3E1"/></svg>`,
+    tart: `<svg viewBox="0 0 100 100" fill="none"><path d="M15 62a35 15 0 0070 0z" fill="#3A2313"/><path d="M15 62a35 15 0 0170 0" stroke="#2C1A0D" stroke-width="2" fill="none"/><circle cx="35" cy="55" r="5" fill="#E7A83B"/><circle cx="50" cy="50" r="5" fill="#E7A83B"/><circle cx="65" cy="55" r="5" fill="#E7A83B"/></svg>`,
+    macaron: `<svg viewBox="0 0 100 100" fill="none"><ellipse cx="50" cy="32" rx="26" ry="14" fill="#3A2313"/><rect x="24" y="46" width="52" height="8" fill="#E7A83B"/><ellipse cx="50" cy="68" rx="26" ry="14" fill="#3A2313"/></svg>`
+  };
+
+  /* ============================================================
+     DATA
+     ============================================================ */
+  const menuItems = [
+    { id:1, name:"Sourdough Country Loaf", cat:"Breads", price:"Rp 45.000", icon:"bread", thumb:"thumb-1",
+      desc:"A 24-hour naturally leavened loaf with a deep, crackly crust and an open, tangy crumb. Baked in small batches every morning.",
+      ing:["Bread flour","Filtered water","Sourdough starter","Sea salt"], allergen:"Contains gluten." },
+    { id:2, name:"Butter Croissant", cat:"Pastries", price:"Rp 22.000", icon:"croissant", thumb:"thumb-2",
+      desc:"Laminated over three days with cultured butter for a shatter-crisp shell and a soft, honeycombed inside.",
+      ing:["Flour","Cultured butter","Fresh yeast","Sugar","Sea salt","Milk"], allergen:"Contains gluten and dairy." },
+    { id:3, name:"Cinnamon Roll", cat:"Pastries", price:"Rp 25.000", icon:"cinnamon", thumb:"thumb-3",
+      desc:"Soft brioche dough rolled with brown sugar and Ceylon cinnamon, finished with a tangy cream cheese glaze.",
+      ing:["Flour","Butter","Ceylon cinnamon","Brown sugar","Cream cheese","Sugar","Eggs"], allergen:"Contains gluten, dairy and egg." },
+    { id:4, name:"Chocolate Fudge Cake", cat:"Cakes", price:"Rp 35.000 / slice", icon:"cake", thumb:"thumb-4",
+      desc:"Three layers of dark cocoa sponge with a silky fudge ganache — dense, rich, and not overly sweet.",
+      ing:["70% dark chocolate","Butter","Eggs","Flour","Sugar","Cocoa powder"], allergen:"Contains gluten, dairy and egg." },
+    { id:5, name:"Classic Vanilla Cupcake", cat:"Cakes", price:"Rp 18.000", icon:"cupcake", thumb:"thumb-5",
+      desc:"A tender vanilla-bean crumb piped high with light buttercream — a party-table regular for a reason.",
+      ing:["Flour","Butter","Sugar","Eggs","Vanilla bean","Milk"], allergen:"Contains gluten, dairy and egg." },
+    { id:6, name:"Golden Honey Oat Cookies", cat:"Cookies", price:"Rp 15.000", icon:"cookie", thumb:"thumb-6",
+      desc:"Crisp at the edge, chewy in the middle, sweetened with real honey instead of syrup.",
+      ing:["Rolled oats","Honey","Butter","Flour","Brown sugar","Sea salt"], allergen:"Contains gluten and dairy." },
+    { id:7, name:"Caramel Almond Tart", cat:"Pastries", price:"Rp 32.000", icon:"tart", thumb:"thumb-7",
+      desc:"A buttery shortcrust shell filled with soft caramel and toasted almonds, finished with a torch-caramelised top.",
+      ing:["Flour","Butter","Caramel","Toasted almonds","Cream","Eggs"], allergen:"Contains gluten, dairy, egg and nuts." },
+    { id:8, name:"French Macaron (box of 2)", cat:"Cookies", price:"Rp 20.000", icon:"macaron", thumb:"thumb-8",
+      desc:"Almond meringue shells with a crisp shell and chewy centre, sandwiched with dark chocolate ganache.",
+      ing:["Almond flour","Icing sugar","Egg whites","Dark chocolate ganache"], allergen:"Contains egg, nuts and dairy." }
+  ];
+
+  const packages = [
+    { name:"Sweet Start", pax:"For 10–15 guests", price:"Rp 350.000", featured:false,
+      items:["Assorted mini pastries (30 pcs)","1 medium celebration cake (20cm)","Cookie platter (24 pcs)","Simple dessert table setup"] },
+    { name:"Golden Celebration", pax:"For 25–30 guests", price:"Rp 650.000", featured:true,
+      items:["2-tier customisable cake","Full pastry box (50 pcs)","Macaron tower (40 pcs)","Styled dessert table setup","Flavour tasting session included"] },
+    { name:"Royal Feast", pax:"For 50+ guests", price:"Rp 1.200.000", featured:false,
+      items:["Full dessert table, 6+ items","Custom-designed celebration cake","Optional live pastry station","Personalised party favour boxes","Dedicated event coordinator"] }
+  ];
+
+  /* ============================================================
+     RENDER MENU
+     ============================================================ */
+  const menuGrid = document.getElementById("menuGrid");
+
+  function renderMenu(filter){
+    menuGrid.innerHTML = "";
+    menuItems
+      .filter(item => filter === "all" || item.cat === filter)
+      .forEach(item => {
+        const card = document.createElement("button");
+        card.className = "menu-card";
+        card.setAttribute("data-id", item.id);
+        card.innerHTML = `
+          <div class="card-thumb ${item.thumb}">${icons[item.icon]}</div>
+          <div class="card-body">
+            <div class="card-cat">${item.cat}</div>
+            <div class="card-name">${item.name}</div>
+            <div class="card-price">${item.price}</div>
+            <div class="card-hint">Tap for ingredients →</div>
+          </div>`;
+        card.addEventListener("click", () => openModal(item));
+        menuGrid.appendChild(card);
+      });
+  }
+  renderMenu("all");
+
+  document.querySelectorAll(".chip").forEach(chip => {
+    chip.addEventListener("click", () => {
+      document.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+      renderMenu(chip.getAttribute("data-filter"));
+    });
+  });
+
+  /* ============================================================
+     RENDER PARTY PACKAGES
+     ============================================================ */
+  const pkgGrid = document.getElementById("pkgGrid");
+  const checkIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>`;
+
+  packages.forEach(pkg => {
+    const card = document.createElement("div");
+    card.className = "pkg-card" + (pkg.featured ? " featured" : "");
+    card.innerHTML = `
+      ${pkg.featured ? '<span class="pkg-badge">Most popular</span>' : ""}
+      <div class="pkg-name">${pkg.name}</div>
+      <div class="pkg-for">${pkg.pax}</div>
+      <div class="pkg-price">${pkg.price}<span> / package</span></div>
+      <ul class="pkg-list">${pkg.items.map(i => `<li>${checkIcon}<span>${i}</span></li>`).join("")}</ul>
+      <a class="pkg-btn" href="https://wa.me/6281234567890?text=${encodeURIComponent("Hi Golden Crust, I'd like to enquire about the " + pkg.name + " package.")}" target="_blank" rel="noopener">Enquire on WhatsApp</a>
+    `;
+    pkgGrid.appendChild(card);
+  });
+
+  /* ============================================================
+     MENU ITEM MODAL LOGIC
+     ============================================================ */
+  const modalBackdrop = document.getElementById("modalBackdrop");
+  const modalThumb = document.getElementById("modalThumb");
+  const modalCat = document.getElementById("modalCat");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalPrice = document.getElementById("modalPrice");
+  const modalDesc = document.getElementById("modalDesc");
+  const modalIng = document.getElementById("modalIng");
+  const modalAllergen = document.getElementById("modalAllergen");
+  const modalClose = document.getElementById("modalClose");
+  let lastFocused = null;
+
+  function openModal(item){
+    lastFocused = document.activeElement;
+    modalThumb.className = "modal-thumb " + item.thumb;
+    modalThumb.innerHTML = icons[item.icon];
+    modalCat.textContent = item.cat;
+    modalTitle.textContent = item.name;
+    modalPrice.textContent = item.price;
+    modalDesc.textContent = item.desc;
+    modalIng.innerHTML = item.ing.map(i => `<li>${i}</li>`).join("");
+    modalAllergen.textContent = item.allergen;
+    modalBackdrop.classList.add("open");
+    document.body.style.overflow = "hidden";
+    modalClose.focus();
+  }
+  function closeModal(){
+    modalBackdrop.classList.remove("open");
+    document.body.style.overflow = "";
+    if (lastFocused) lastFocused.focus();
+  }
+  modalClose.addEventListener("click", closeModal);
+  modalBackdrop.addEventListener("click", e => { if (e.target === modalBackdrop) closeModal(); });
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape"){
+      if (modalBackdrop.classList.contains("open")) closeModal();
+      if (adBackdrop.classList.contains("open")) closeAd();
+    }
+  });
+
+  /* ============================================================
+     EVENT / AD POPUP — shows once per calendar day
+     ============================================================ */
+  const adBackdrop = document.getElementById("adBackdrop");
+  const adClose = document.getElementById("adClose");
+  const adCta = document.getElementById("adCta");
+  const adTimerFill = document.getElementById("adTimerFill");
+  const AD_STORAGE_KEY = "gc_ad_last_shown";
+  let adAutoCloseTimer = null;
+
+  function todayString(){
+    const d = new Date();
+    return d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
+  }
+
+  function openAd(){
+    adBackdrop.classList.add("open");
+    adTimerFill.classList.add("run");
+    adAutoCloseTimer = setTimeout(closeAd, 20000);
+    try { localStorage.setItem(AD_STORAGE_KEY, todayString()); } catch(e) {}
+  }
+  function closeAd(){
+    adBackdrop.classList.remove("open");
+    adTimerFill.classList.remove("run");
+    if (adAutoCloseTimer){ clearTimeout(adAutoCloseTimer); adAutoCloseTimer = null; }
+  }
+  adClose.addEventListener("click", closeAd);
+  adCta.addEventListener("click", closeAd);
+  adBackdrop.addEventListener("click", e => { if (e.target === adBackdrop) closeAd(); });
+
+  (function maybeShowAd(){
+    let lastShown = null;
+    try { lastShown = localStorage.getItem(AD_STORAGE_KEY); } catch(e) {}
+    if (lastShown !== todayString()){
+      setTimeout(openAd, 600);
+    }
+  })();
+
+  /* ============================================================
+     MOBILE NAV TOGGLE
+     ============================================================ */
+  const menuToggle = document.getElementById("menuToggle");
+  const navLinks = document.getElementById("navLinks");
+  menuToggle.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded", isOpen);
+  });
+  navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+  }));
+
+  /* ============================================================
+     SCROLL REVEAL
+     ============================================================ */
+  const revealEls = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting){
+          entry.target.classList.add("in");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add("in"));
+  }
+
+})();
+</script>
+</body>
+</html>
