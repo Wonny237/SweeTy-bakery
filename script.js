@@ -1,4 +1,4 @@
-<script>
+
 (function(){
   "use strict";
 
@@ -122,7 +122,13 @@
   const modalIng = document.getElementById("modalIng");
   const modalAllergen = document.getElementById("modalAllergen");
   const modalClose = document.getElementById("modalClose");
+  const modalQtyValue = document.getElementById("modalQtyValue");
+  const modalQtyMinus = document.getElementById("modalQtyMinus");
+  const modalQtyPlus = document.getElementById("modalQtyPlus");
+  const modalAddBtn = document.getElementById("modalAddBtn");
   let lastFocused = null;
+   let currentModalItem = null;
+  let currentModalQty = 1;
 
   function openModal(item){
     lastFocused = document.activeElement;
@@ -143,14 +149,172 @@
     document.body.style.overflow = "";
     if (lastFocused) lastFocused.focus();
   }
+  modalQtyMinus.addEventListener("click", () => {
+    if (currentModalQty > 1){ currentModalQty--; modalQtyValue.textContent = currentModalQty; }
+  });
+  modalQtyPlus.addEventListener("click", () => {
+    if (currentModalQty < 20){ currentModalQty++; modalQtyValue.textContent = currentModalQty; }
+  });
+  modalAddBtn.addEventListener("click", () => {
+    if (!currentModalItem) return;
+    addToCart(currentModalItem, currentModalQty);
+    modalAddBtn.textContent = `Added ${currentModalQty} to order ✓`;
+    setTimeout(closeModal, 700);
+  });
   modalClose.addEventListener("click", closeModal);
   modalBackdrop.addEventListener("click", e => { if (e.target === modalBackdrop) closeModal(); });
   document.addEventListener("keydown", e => {
     if (e.key === "Escape"){
       if (modalBackdrop.classList.contains("open")) closeModal();
       if (adBackdrop.classList.contains("open")) closeAd();
+      if (cartPanel.classList.contains("open")) closeCart();
     }
   });
+
+
+
+
+
+    const CART_STORAGE_KEY = "gc_cart";
+  let cart = []; // [{ id, name, price, thumb, icon, qty }]
+ 
+  function loadCart(){
+    try {
+      const saved = localStorage.getItem(CART_STORAGE_KEY);
+      if (saved) cart = JSON.parse(saved);
+    } catch(e) { cart = []; }
+  }
+  function saveCart(){
+    try { localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart)); } catch(e) {}
+  }
+  function formatRupiah(num){
+    return "Rp " + num.toLocaleString("id-ID");
+  }
+ 
+  function addToCart(item, qty){
+    const existing = cart.find(c => c.id === item.id);
+    if (existing){
+      existing.qty += qty;
+    } else {
+      cart.push({ id:item.id, name:item.name, price:item.priceNum, thumb:item.thumb, icon:item.icon, qty:qty });
+    }
+    saveCart();
+    renderCart();
+    openCartBriefly();
+  }
+  function removeFromCart(id){
+    cart = cart.filter(c => c.id !== id);
+    saveCart();
+    renderCart();
+  }
+  function changeCartQty(id, delta){
+    const line = cart.find(c => c.id === id);
+    if (!line) return;
+    line.qty += delta;
+    if (line.qty <= 0){ removeFromCart(id); return; }
+    saveCart();
+    renderCart();
+  }
+ 
+  const cartToggle = document.getElementById("cartToggle");
+  const cartPanel = document.getElementById("cartPanel");
+  const cartPanelClose = document.getElementById("cartPanelClose");
+  const cartItemsEl = document.getElementById("cartItems");
+  const cartEmptyEl = document.getElementById("cartEmpty");
+  const cartFooterEl = document.getElementById("cartFooter");
+  const cartCountEl = document.getElementById("cartCount");
+  const cartTotalEl = document.getElementById("cartTotal");
+  const cartCheckoutEl = document.getElementById("cartCheckout");
+ 
+  function renderCart(){
+    const totalItems = cart.reduce((sum, c) => sum + c.qty, 0);
+    const totalPrice = cart.reduce((sum, c) => sum + c.qty * c.price, 0);
+ 
+    // badge on the floating button
+    if (totalItems > 0){
+      cartCountEl.hidden = false;
+      cartCountEl.textContent = totalItems;
+    } else {
+      cartCountEl.hidden = true;
+    }
+ 
+    // empty state vs list
+    if (cart.length === 0){
+      cartItemsEl.innerHTML = "";
+      cartEmptyEl.hidden = false;
+      cartFooterEl.hidden = true;
+      return;
+    }
+    cartEmptyEl.hidden = true;
+    cartFooterEl.hidden = false;
+ 
+    cartItemsEl.innerHTML = cart.map(line => `
+      <div class="cart-item" data-cart-id="${line.id}">
+        <div class="cart-item-thumb ${line.thumb}">${icons[line.icon]}</div>
+        <div class="cart-item-info">
+          <div class="cart-item-name">${line.name}</div>
+          <div class="cart-item-price">${formatRupiah(line.price)}</div>
+        </div>
+        <div class="qty-stepper">
+          <button type="button" class="cart-qty-minus" data-id="${line.id}" aria-label="Decrease quantity">−</button>
+          <span class="qty-value">${line.qty}</span>
+          <button type="button" class="cart-qty-plus" data-id="${line.id}" aria-label="Increase quantity">+</button>
+        </div>
+        <button type="button" class="cart-item-remove" data-id="${line.id}" aria-label="Remove ${line.name}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m3 0l-1 14a2 2 0 01-2 2H7a2 2 0 01-2-2L4 6"/></svg>
+        </button>
+      </div>
+    `).join("");
+ 
+    cartTotalEl.textContent = formatRupiah(totalPrice);
+ 
+    // build the WhatsApp message with every item pre-filled
+    let msg = "Hi Golden Crust, I'd like to order:\n\n";
+    cart.forEach(line => {
+      msg += `• ${line.name} x${line.qty} — ${formatRupiah(line.price * line.qty)}\n`;
+    });
+    msg += `\nTotal: ${formatRupiah(totalPrice)}\n\nPlease let me know how to proceed. Thank you!`;
+    cartCheckoutEl.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+  }
+ 
+  // event delegation: qty +/- and remove buttons inside the cart list
+  cartItemsEl.addEventListener("click", e => {
+    const minus = e.target.closest(".cart-qty-minus");
+    const plus = e.target.closest(".cart-qty-plus");
+    const remove = e.target.closest(".cart-item-remove");
+    if (minus) changeCartQty(Number(minus.dataset.id), -1);
+    if (plus) changeCartQty(Number(plus.dataset.id), 1);
+    if (remove) removeFromCart(Number(remove.dataset.id));
+  });
+ 
+  function openCart(){
+    cartPanel.classList.add("open");
+    cartToggle.setAttribute("aria-expanded", "true");
+  }
+  function closeCart(){
+    cartPanel.classList.remove("open");
+    cartToggle.setAttribute("aria-expanded", "false");
+  }
+  function openCartBriefly(){
+    // auto-pop the cart open for a moment so the add feels confirmed
+    openCart();
+  }
+  cartToggle.addEventListener("click", () => {
+    cartPanel.classList.contains("open") ? closeCart() : openCart();
+  });
+  cartPanelClose.addEventListener("click", closeCart);
+  document.addEventListener("click", e => {
+    if (!cartPanel.classList.contains("open")) return;
+    if (cartPanel.contains(e.target) || cartToggle.contains(e.target)) return;
+    closeCart();
+  });
+ 
+  loadCart();
+  renderCart();
+
+
+
+  
 
   /* ============================================================
      EVENT / AD POPUP — shows once per calendar day
@@ -223,4 +387,8 @@
   }
 
 })();
-</script>
+
+
+
+
+
