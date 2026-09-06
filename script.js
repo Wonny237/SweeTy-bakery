@@ -176,7 +176,11 @@
 
 
     const CART_STORAGE_KEY = "gc_cart";
+  const WHATSAPP_NUMBER = "6281234567890"; // <-- set your WhatsApp number here (no +)
+
   let cart = []; // [{ id, name, price, thumb, icon, qty }]
+
+
  
   function loadCart(){
     try {
@@ -191,14 +195,12 @@
     return "Rp " + num.toLocaleString("id-ID");
   }
 
-  // Add/replace near the cart constants (where CART_STORAGE_KEY is defined)
-const CART_STORAGE_KEY = "gc_cart";
-const WHATSAPP_NUMBER = "6281234567890"; // <-- set your WhatsApp number here (no +)
-
+  
 // Replace the openModal function with this version
 function openModal(item){
   lastFocused = document.activeElement;
-  // make sure the modal code knows which item is open
+
+  // ensure modal state is initialized
   currentModalItem = item;
   currentModalQty = 1;
   modalQtyValue.textContent = currentModalQty;
@@ -220,13 +222,23 @@ function openModal(item){
 
 // Replace addToCart to coerce a numeric price when needed
 function addToCart(item, qty){
-  // derive numeric price if missing (e.g. "Rp 45.000" -> 45000)
-  const priceNum = item.priceNum ?? Number(String(item.price).replace(/[^\d]/g, ""));
+  // derive numeric price if menu item doesn't provide priceNum (e.g. "Rp 45.000")
+  const priceNum = (typeof item.priceNum === "number")
+    ? item.priceNum
+    : Number(String(item.price).replace(/[^\d]/g, "")) || 0;
+
   const existing = cart.find(c => c.id === item.id);
   if (existing){
     existing.qty += qty;
   } else {
-    cart.push({ id: item.id, name: item.name, price: priceNum, thumb: item.thumb, icon: item.icon, qty: qty });
+    cart.push({
+      id: item.id,
+      name: item.name,
+      price: priceNum,
+      thumb: item.thumb,
+      icon: item.icon,
+      qty: qty
+    });
   }
   saveCart();
   renderCart();
