@@ -190,18 +190,50 @@
   function formatRupiah(num){
     return "Rp " + num.toLocaleString("id-ID");
   }
- 
-  function addToCart(item, qty){
-    const existing = cart.find(c => c.id === item.id);
-    if (existing){
-      existing.qty += qty;
-    } else {
-      cart.push({ id:item.id, name:item.name, price:item.priceNum, thumb:item.thumb, icon:item.icon, qty:qty });
-    }
-    saveCart();
-    renderCart();
-    openCartBriefly();
+
+  // Add/replace near the cart constants (where CART_STORAGE_KEY is defined)
+const CART_STORAGE_KEY = "gc_cart";
+const WHATSAPP_NUMBER = "6281234567890"; // <-- set your WhatsApp number here (no +)
+
+// Replace the openModal function with this version
+function openModal(item){
+  lastFocused = document.activeElement;
+  // make sure the modal code knows which item is open
+  currentModalItem = item;
+  currentModalQty = 1;
+  modalQtyValue.textContent = currentModalQty;
+  modalAddBtn.textContent = "Add to Order";
+  modalAddBtn.disabled = false;
+
+  modalThumb.className = "modal-thumb " + item.thumb;
+  modalThumb.innerHTML = icons[item.icon];
+  modalCat.textContent = item.cat;
+  modalTitle.textContent = item.name;
+  modalPrice.textContent = item.price;
+  modalDesc.textContent = item.desc;
+  modalIng.innerHTML = item.ing.map(i => `<li>${i}</li>`).join("");
+  modalAllergen.textContent = item.allergen;
+  modalBackdrop.classList.add("open");
+  document.body.style.overflow = "hidden";
+  modalClose.focus();
+}
+
+// Replace addToCart to coerce a numeric price when needed
+function addToCart(item, qty){
+  // derive numeric price if missing (e.g. "Rp 45.000" -> 45000)
+  const priceNum = item.priceNum ?? Number(String(item.price).replace(/[^\d]/g, ""));
+  const existing = cart.find(c => c.id === item.id);
+  if (existing){
+    existing.qty += qty;
+  } else {
+    cart.push({ id: item.id, name: item.name, price: priceNum, thumb: item.thumb, icon: item.icon, qty: qty });
   }
+  saveCart();
+  renderCart();
+  openCartBriefly();
+}
+ 
+
   function removeFromCart(id){
     cart = cart.filter(c => c.id !== id);
     saveCart();
