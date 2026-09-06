@@ -240,9 +240,41 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L14.7 3.86a2 2 0 00-3.4 0z"/></svg>
         <span id="modalAllergen"></span>
       </div>
+      <div class="modal-qty-row">
+        <span class="modal-sub" style="margin:0;">Quantity</span>
+        <div class="qty-stepper">
+          <button type="button" id="modalQtyMinus" aria-label="Decrease quantity">−</button>
+          <span class="qty-value" id="modalQtyValue">1</span>
+          <button type="button" id="modalQtyPlus" aria-label="Increase quantity">+</button>
+        </div>
+      </div>
+      <button class="btn btn-primary modal-add-btn" id="modalAddBtn">Add to Order</button>
+    </div>
     </div>
   </div>
 </div>
+
+
+<button class="cart-toggle" id="cartToggle" aria-label="View your order" aria-expanded="false">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1.5"/><circle cx="19" cy="21" r="1.5"/><path d="M2.5 3h2l2.6 12.4a2 2 0 002 1.6h8.4a2 2 0 002-1.6L21 7H6"/></svg>
+  <span class="cart-count" id="cartCount" hidden>0</span>
+</button>
+ 
+<div class="cart-panel" id="cartPanel" role="dialog" aria-modal="false" aria-labelledby="cartPanelTitle">
+  <div class="cart-panel-head">
+    <h3 id="cartPanelTitle">Your Order</h3>
+    <button class="cart-panel-close" id="cartPanelClose" aria-label="Close cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <p class="cart-empty" id="cartEmpty">Your cart is empty — add something delicious from the menu.</p>
+  <div class="cart-footer" id="cartFooter" hidden>
+    <div class="cart-total-row"><span>Total</span><span id="cartTotal">Rp 0</span></div>
+    <a class="btn btn-primary cart-checkout" id="cartCheckout" target="_blank" rel="noopener">Order via WhatsApp</a>
+  </div>
+</div>
+ 
 
 <script>
 (function(){
